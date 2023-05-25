@@ -33,6 +33,8 @@ const Feed = () => {
     fetchPosts();
   }, []);
 
+  console.log(posts);
+
   const filterPrompts = (searchText) => {
     const regex = new RegExp(searchText, "i");
     return posts.filter(
@@ -65,7 +67,7 @@ const Feed = () => {
           placeholder="Search for a tag or a username"
           onChange={handleSearch}
           required
-          className="search_input peer"
+          className="search_input peer "
         />
       </form>
       {/* All Prompts */}
