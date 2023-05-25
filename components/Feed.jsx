@@ -56,6 +56,12 @@ const Feed = () => {
     setSearchedPosts(searchResult);
   };
 
+  if (searchText) {
+    console.log(true);
+  } else {
+    console.log(false);
+  }
+
   return (
     <section className="feed">
       <form className="realtive w-full flex-center">
