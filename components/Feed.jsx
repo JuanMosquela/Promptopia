@@ -33,7 +33,7 @@ const Feed = () => {
     fetchPosts();
   }, []);
 
-  const filterSearch = (searchText) => {
+  const filterPrompts = (searchText) => {
     const regex = new RegExp(searchText, "i");
     return posts.filter(
       (post) =>
@@ -45,8 +45,15 @@ const Feed = () => {
 
   const handleSearch = (e) => {
     setSearchText(e.target.value);
-    const searchResults = filterSearch(e.target.value);
+    const searchResults = filterPrompts(e.target.value);
     setSearchedPosts(searchResults);
+  };
+
+  const handleTagClick = (tagName) => {
+    setSearchText(tagName);
+
+    const searchResult = filterPrompts(tagName);
+    setSearchedPosts(searchResult);
   };
 
   return (
@@ -63,15 +70,9 @@ const Feed = () => {
       </form>
       {/* All Prompts */}
       {searchText ? (
-        <PromptCardList
-          data={searchedPosts}
-          // handleTagClick={handleTagClick}
-        />
+        <PromptCardList data={searchedPosts} handleTagClick={handleTagClick} />
       ) : (
-        <PromptCardList
-          data={posts}
-          //  handleTagClick={handleTagClick}
-        />
+        <PromptCardList data={posts} handleTagClick={handleTagClick} />
       )}
     </section>
   );
