@@ -7,21 +7,14 @@ import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 
 const Navbar = () => {
   const { data: session } = useSession();
-
-  const [isUserLoggedIn, setIsUserLoggedIn] = useState(true);
   const [providers, setProviders] = useState(null);
   const [toggleDropdown, setToggleDropdown] = useState(false);
-  useEffect(() => {
-    const setUpProviders = async () => {
-      const response = await getProviders();
 
-      setProviders(response);
-    };
-    // (async () => {
-    //   const response = await getProviders();
-    //   setProviders(response);
-    // })();
-    setUpProviders();
+  useEffect(() => {
+    (async () => {
+      const res = await getProviders();
+      setProviders(res);
+    })();
   }, []);
 
   return (
