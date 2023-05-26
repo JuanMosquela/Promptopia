@@ -23,7 +23,7 @@ const Feed = () => {
   const [searchedPosts, setSearchedPosts] = useState([]);
 
   const fetchPosts = async () => {
-    const response = await fetch("/api/prompt");
+    const response = await fetch("/api/prompt", { cache: "no-store" });
     const data = await response.json();
 
     setPosts(data);
@@ -55,12 +55,6 @@ const Feed = () => {
     const searchResult = filterPrompts(tagName);
     setSearchedPosts(searchResult);
   };
-
-  if (searchText) {
-    console.log(true);
-  } else {
-    console.log(false);
-  }
 
   return (
     <section className="feed">
