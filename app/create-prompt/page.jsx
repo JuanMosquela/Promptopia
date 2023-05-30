@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import * as promptApi from "../../utils/promptApi";
 
 import Form from "@components/Form";
 
@@ -21,13 +22,10 @@ const CreatePrompt = () => {
 
     setSubmitting(true);
     try {
-      const response = await fetch("/api/prompt/new", {
-        method: "POST",
-        body: JSON.stringify({
-          prompt: post.prompt,
-          userId: session?.user.id,
-          tag: post.tag,
-        }),
+      const response = await promptApi.addPrompt({
+        prompt: post.prompt,
+        userId: session?.user.id,
+        tag: post.tag,
       });
 
       if (response.ok) {

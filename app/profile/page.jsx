@@ -19,8 +19,6 @@ const MyProfile = () => {
     if (session?.user.id) fetchPosts();
   }, [session?.user.id]);
 
-  console.log(posts);
-
   const handleEdit = (post) => {
     router.push(`/update-prompt?id=${post._id}`);
   };
@@ -30,7 +28,7 @@ const MyProfile = () => {
 
     if (hasConfirm) {
       try {
-        await fetch(`/api/prompt/${post._id.toString()}`, {
+        await fetch(`/api/prompt/${post._id}`, {
           method: "DELETE",
         });
 

@@ -23,7 +23,7 @@ const Feed = () => {
   const [searchedPosts, setSearchedPosts] = useState([]);
 
   const fetchPosts = async () => {
-    const response = await fetch("/api/prompt", { next: { tags: ["prompt"] } });
+    const response = await fetch("/api/prompt", { next: { revalidate: 0 } });
     const data = await response.json();
 
     setPosts(data);
